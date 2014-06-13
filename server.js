@@ -8,25 +8,13 @@ var url = require("url");
 
 // the http module includes the function createServer, so we can call it on the http variable we just defined. (t looks like the below is super similar to XML requests.)
 
-//call createServer on the http variable. Then pass createServer an anonomous function that takes the arguements "request" and "response".
-// http.createServer(function(request, response) {
-// 	response.writeHead(200, {"Content-Type": "text/plain"});
-// 	response.write("Hello World");
-// 	response.end();
-// }).listen(8888);
-
 // the above refactored
 
-function start(route) {
+function start(route, handle) {
 	function onRequest(request, response) {
 		var pathname = url.parse(request.url).pathname;
 		console.log("Request for " + pathname + " recieved.");
-
-		route(pathname);
-		
-	  response.writeHead(200, {"Content-Type": "text/plain"});
-	  response.write("Hello World");
-	  response.end();
+		route(handle, pathname, response, request);
 	}
 
 http.createServer(onRequest).listen(8888);
