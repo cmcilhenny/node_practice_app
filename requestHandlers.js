@@ -37,7 +37,7 @@ function upload(response, request) {
 				fs.rename(files.upload.path, "/tem/test.png");
 			}
 		});
-		response.writeHead(200, {"Content-Type": "text/plain"});
+		response.writeHead(200, {"Content-Type": "text/html"});
 		response.write("Hello. Recieved image: <br/>");
 		response.write("<img src='/show' />");
 		response.end();
